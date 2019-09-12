@@ -6,9 +6,10 @@ function EvenListeners(){
     // change
     document.getElementById("language").onchange = function(){
         // arayüz değişiklikleri
+        ui.changeUI();
     }
 }
-
+const ui = new UI();
 function translateWord(e){
     const translate = new Translate(document.getElementById("word").value, document.getElementById("language").value);
     translate.translateWord(function(err,response){
@@ -16,10 +17,10 @@ function translateWord(e){
             console.log(err);
         }
         else{
-            console.log(response);
+            ui.displayTranslate(response);
             
         }
     });
-
+    document.getElementById("translate-w").style.display = "inline";
     e.preventDefault();
 }
